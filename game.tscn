@@ -1,36 +1,231 @@
-[gd_scene load_steps=3 format=3 uid="uid://by733go3slss6"]
+[gd_scene load_steps=7 format=3 uid="uid://by733go3slss6"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_qm4o3"]
 [ext_resource type="PackedScene" uid="uid://dshpn8l2mhj61" path="res://drawing_point.tscn" id="2_aulhk"]
+[ext_resource type="PackedScene" uid="uid://thvnxqkocf4w" path="res://party_member.tscn" id="3_ugncn"]
+[ext_resource type="Texture2D" uid="uid://bugd6u0n6u1ml" path="res://images/spellbook/default.png" id="4_6e1uh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dnr43"]
+bg_color = Color(1, 0.831373, 0.643137, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.243137, 0.141176, 0, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g1xs3"]
+bg_color = Color(0, 0, 0.278431, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_qm4o3")
 
-[node name="Drawing_Point" parent="." instance=ExtResource("2_aulhk")]
-position = Vector2(250, 100)
+[node name="Points" type="Node2D" parent="."]
+visible = false
+position = Vector2(24, 0)
 
-[node name="Drawing_Point2" parent="." instance=ExtResource("2_aulhk")]
-position = Vector2(250, 300)
+[node name="Control" type="Control" parent="Points"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
 
-[node name="Drawing_Point3" parent="." instance=ExtResource("2_aulhk")]
-position = Vector2(550, 100)
+[node name="Panel" type="Panel" parent="Points/Control"]
+layout_mode = 0
+offset_left = 280.0
+offset_right = 920.0
+offset_bottom = 501.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dnr43")
 
-[node name="Drawing_Point5" parent="." instance=ExtResource("2_aulhk")]
-position = Vector2(550, 300)
+[node name="Drawing_Point" parent="Points" instance=ExtResource("2_aulhk")]
+position = Vector2(400, 100)
 
-[node name="Drawing_Point4" parent="." instance=ExtResource("2_aulhk")]
-position = Vector2(850, 100)
+[node name="Drawing_Point2" parent="Points" instance=ExtResource("2_aulhk")]
+position = Vector2(400, 250)
 
-[node name="Drawing_Point6" parent="." instance=ExtResource("2_aulhk")]
-position = Vector2(850, 300)
+[node name="Drawing_Point3" parent="Points" instance=ExtResource("2_aulhk")]
+position = Vector2(600, 100)
 
-[node name="Drawing_Point7" parent="." instance=ExtResource("2_aulhk")]
-position = Vector2(250, 500)
+[node name="Drawing_Point5" parent="Points" instance=ExtResource("2_aulhk")]
+position = Vector2(600, 250)
 
-[node name="Drawing_Point8" parent="." instance=ExtResource("2_aulhk")]
-position = Vector2(550, 500)
+[node name="Drawing_Point4" parent="Points" instance=ExtResource("2_aulhk")]
+position = Vector2(800, 100)
 
-[node name="Drawing_Point9" parent="." instance=ExtResource("2_aulhk")]
-position = Vector2(850, 500)
+[node name="Drawing_Point6" parent="Points" instance=ExtResource("2_aulhk")]
+position = Vector2(800, 250)
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Drawing_Point7" parent="Points" instance=ExtResource("2_aulhk")]
+position = Vector2(400, 400)
+
+[node name="Drawing_Point8" parent="Points" instance=ExtResource("2_aulhk")]
+position = Vector2(600, 400)
+
+[node name="Drawing_Point9" parent="Points" instance=ExtResource("2_aulhk")]
+position = Vector2(800, 400)
+
+[node name="Line2D" type="Line2D" parent="Points"]
+
+[node name="SpellBook" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 280.0
+offset_right = 1000.0
+offset_bottom = 497.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="SpellBook"]
+layout_mode = 2
+offset_right = 360.0
+offset_bottom = 501.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dnr43")
+
+[node name="Panel2" type="Panel" parent="SpellBook"]
+layout_mode = 2
+offset_left = 360.0
+offset_right = 720.0
+offset_bottom = 501.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dnr43")
+
+[node name="MarginContainer" type="MarginContainer" parent="SpellBook"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 501.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Page1" type="HBoxContainer" parent="SpellBook/MarginContainer"]
+layout_mode = 2
+
+[node name="Spell1" type="VBoxContainer" parent="SpellBook/MarginContainer/Page1"]
+layout_mode = 2
+alignment = 1
+
+[node name="SpellName" type="Label" parent="SpellBook/MarginContainer/Page1/Spell1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Spell Name
+"
+horizontal_alignment = 1
+
+[node name="Spell Image" type="TextureRect" parent="SpellBook/MarginContainer/Page1/Spell1"]
+layout_mode = 2
+texture = ExtResource("4_6e1uh")
+
+[node name="SpellName2" type="Label" parent="SpellBook/MarginContainer/Page1/Spell1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Spell Description"
+
+[node name="MarginContainer2" type="MarginContainer" parent="SpellBook"]
+layout_mode = 0
+offset_left = 360.0
+offset_right = 720.0
+offset_bottom = 501.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Page1" type="HBoxContainer" parent="SpellBook/MarginContainer2"]
+layout_mode = 2
+
+[node name="Spell1" type="VBoxContainer" parent="SpellBook/MarginContainer2/Page1"]
+layout_mode = 2
+alignment = 1
+
+[node name="SpellName" type="Label" parent="SpellBook/MarginContainer2/Page1/Spell1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Spell Name
+"
+horizontal_alignment = 1
+
+[node name="Spell Image" type="TextureRect" parent="SpellBook/MarginContainer2/Page1/Spell1"]
+layout_mode = 2
+texture = ExtResource("4_6e1uh")
+
+[node name="SpellName2" type="Label" parent="SpellBook/MarginContainer2/Page1/Spell1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Spell Description"
+
+[node name="Party" type="Control" parent="."]
+custom_minimum_size = Vector2(1280, 216)
+layout_mode = 3
+anchors_preset = 0
+offset_top = 502.0
+offset_right = 1280.0
+offset_bottom = 722.0
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="Party"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g1xs3")
+
+[node name="MarginContainer" type="MarginContainer" parent="Party"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 220.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Party/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 75
+alignment = 1
+
+[node name="SpellBook" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
+layout_mode = 2
+party_member = "Spellbook"
+
+[node name="HealthBar" parent="Party/MarginContainer/HBoxContainer/SpellBook" index="1"]
+visible = false
+
+[node name="PartyMember1" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
+layout_mode = 2
+party_member = "PartyMember1"
+
+[node name="PartyMember2" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
+layout_mode = 2
+party_member = "PartyMember2"
+
+[node name="PartyMember3" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
+layout_mode = 2
+party_member = "PartyMember3"
+
+[node name="PartyMember4" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
+layout_mode = 2
+party_member = "PartyMember4"
+
+[editable path="Party/MarginContainer/HBoxContainer/SpellBook"]

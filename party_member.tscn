@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://thvnxqkocf4w"]
+
+[ext_resource type="Script" path="res://party_member.gd" id="1_0j8a1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05qfo"]
+bg_color = Color(0.513726, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="PartyMember" type="VBoxContainer"]
+custom_minimum_size = Vector2(180, 180)
+script = ExtResource("1_0j8a1")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Party Member"
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(20, 25)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_05qfo")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
