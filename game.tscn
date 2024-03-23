@@ -1,6 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://by733go3slss6"]
+[gd_scene load_steps=3 format=3 uid="uid://by733go3slss6"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_qm4o3"]
+[ext_resource type="PackedScene" uid="uid://dshpn8l2mhj61" path="res://drawing_point.tscn" id="2_aulhk"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_qm4o3")
+
+[node name="Drawing_Point" parent="." instance=ExtResource("2_aulhk")]
+position = Vector2(250, 100)
+
+[node name="Drawing_Point2" parent="." instance=ExtResource("2_aulhk")]
+position = Vector2(250, 300)
+
+[node name="Drawing_Point3" parent="." instance=ExtResource("2_aulhk")]
+position = Vector2(550, 100)
+
+[node name="Drawing_Point5" parent="." instance=ExtResource("2_aulhk")]
+position = Vector2(550, 300)
+
+[node name="Drawing_Point4" parent="." instance=ExtResource("2_aulhk")]
+position = Vector2(850, 100)
+
+[node name="Drawing_Point6" parent="." instance=ExtResource("2_aulhk")]
+position = Vector2(850, 300)
+
+[node name="Drawing_Point7" parent="." instance=ExtResource("2_aulhk")]
+position = Vector2(250, 500)
+
+[node name="Drawing_Point8" parent="." instance=ExtResource("2_aulhk")]
+position = Vector2(550, 500)
+
+[node name="Drawing_Point9" parent="." instance=ExtResource("2_aulhk")]
+position = Vector2(850, 500)
+
+[node name="Line2D" type="Line2D" parent="."]
