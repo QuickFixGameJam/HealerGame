@@ -1,21 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://by733go3slss6"]
+[gd_scene load_steps=8 format=3 uid="uid://by733go3slss6"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_qm4o3"]
 [ext_resource type="PackedScene" uid="uid://dshpn8l2mhj61" path="res://drawing_point.tscn" id="2_aulhk"]
 [ext_resource type="PackedScene" uid="uid://thvnxqkocf4w" path="res://party_member.tscn" id="3_ugncn"]
 [ext_resource type="Texture2D" uid="uid://bugd6u0n6u1ml" path="res://images/spellbook/default.png" id="4_6e1uh"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dnr43"]
-bg_color = Color(1, 0.831373, 0.643137, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.243137, 0.141176, 0, 1)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
+[ext_resource type="Texture2D" uid="uid://bqbvrurypofs2" path="res://icon.svg" id="5_m8sav"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g1xs3"]
 bg_color = Color(0, 0, 0.278431, 1)
@@ -29,8 +18,98 @@ corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dnr43"]
+bg_color = Color(1, 0.831373, 0.643137, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.243137, 0.141176, 0, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_qm4o3")
+
+[node name="Boss" type="Node2D" parent="."]
+position = Vector2(1103, 264)
+
+[node name="Sprite2D" type="Sprite2D" parent="Boss"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_m8sav")
+
+[node name="Party" type="Control" parent="."]
+custom_minimum_size = Vector2(1280, 216)
+layout_mode = 3
+anchors_preset = 0
+offset_top = 502.0
+offset_right = 1280.0
+offset_bottom = 722.0
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="Party"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g1xs3")
+
+[node name="MarginContainer" type="MarginContainer" parent="Party"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 220.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Party/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 75
+alignment = 1
+
+[node name="SpellBook" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
+layout_mode = 2
+party_member = "Spellbook"
+
+[node name="HealthBar" parent="Party/MarginContainer/HBoxContainer/SpellBook" index="1"]
+visible = false
+
+[node name="Sprite2D" parent="Party/MarginContainer/HBoxContainer/SpellBook" index="3"]
+position = Vector2(64, -192)
+texture = null
+
+[node name="PartyMember1" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
+layout_mode = 2
+party_member = "PartyMember1"
+
+[node name="Sprite2D" parent="Party/MarginContainer/HBoxContainer/PartyMember1" index="3"]
+position = Vector2(-192, -192)
+
+[node name="PartyMember2" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
+layout_mode = 2
+party_member = "PartyMember2"
+
+[node name="Sprite2D" parent="Party/MarginContainer/HBoxContainer/PartyMember2" index="3"]
+position = Vector2(-246, -194)
+
+[node name="PartyMember3" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
+layout_mode = 2
+party_member = "PartyMember3"
+
+[node name="Sprite2D" parent="Party/MarginContainer/HBoxContainer/PartyMember3" index="3"]
+position = Vector2(-301, -192)
+
+[node name="PartyMember4" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
+layout_mode = 2
+party_member = "PartyMember4"
+
+[node name="Sprite2D" parent="Party/MarginContainer/HBoxContainer/PartyMember4" index="3"]
+position = Vector2(-356, -194)
 
 [node name="Points" type="Node2D" parent="."]
 visible = false
@@ -173,59 +252,8 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Spell Description"
 
-[node name="Party" type="Control" parent="."]
-custom_minimum_size = Vector2(1280, 216)
-layout_mode = 3
-anchors_preset = 0
-offset_top = 502.0
-offset_right = 1280.0
-offset_bottom = 722.0
-size_flags_horizontal = 4
-
-[node name="Panel" type="Panel" parent="Party"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_g1xs3")
-
-[node name="MarginContainer" type="MarginContainer" parent="Party"]
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 220.0
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Party/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 75
-alignment = 1
-
-[node name="SpellBook" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
-layout_mode = 2
-party_member = "Spellbook"
-
-[node name="HealthBar" parent="Party/MarginContainer/HBoxContainer/SpellBook" index="1"]
-visible = false
-
-[node name="PartyMember1" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
-layout_mode = 2
-party_member = "PartyMember1"
-
-[node name="PartyMember2" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
-layout_mode = 2
-party_member = "PartyMember2"
-
-[node name="PartyMember3" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
-layout_mode = 2
-party_member = "PartyMember3"
-
-[node name="PartyMember4" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
-layout_mode = 2
-party_member = "PartyMember4"
-
 [editable path="Party/MarginContainer/HBoxContainer/SpellBook"]
+[editable path="Party/MarginContainer/HBoxContainer/PartyMember1"]
+[editable path="Party/MarginContainer/HBoxContainer/PartyMember2"]
+[editable path="Party/MarginContainer/HBoxContainer/PartyMember3"]
+[editable path="Party/MarginContainer/HBoxContainer/PartyMember4"]

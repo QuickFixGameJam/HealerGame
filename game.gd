@@ -34,23 +34,26 @@ func new_point(point):
 		line_2d.add_point(point.position)
 
 func change_target(party_member):
-	target = party_member
-	if target.name == "none":
+	if target == party_member:
 		$Points.hide()
 		$SpellBook.hide()
-	elif target.name == "Spellbook":
-		$SpellBook.show()
-		$Points.hide()
+		target = null
 	else:
-		$SpellBook.hide()
-		$Points.show()
+		target = party_member
+		if target.name == "none":
+			$Points.hide()
+			$SpellBook.hide()
+		elif target.name == "SpellBook":
+			$SpellBook.show()
+			$Points.hide()
+		else:
+			$SpellBook.hide()
+			$Points.show()
 
 func cast_spell(spell):
 	print("casting " + spell + " on " + target.name)
 	$Points.hide()
-	
-	if spell == "heal":
-		target.heal()
+	target.healed(spell)
 
 func find_spell():
 	var points = line_2d.points
