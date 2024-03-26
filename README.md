@@ -1,4 +1,4 @@
-# Healer Game
+# TO DO
 general:
 - come up with name
 - write list of spells
