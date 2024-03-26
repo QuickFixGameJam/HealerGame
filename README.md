@@ -30,3 +30,10 @@ sound:
 - casting spell
 - attack sound
 - on-fire sound effect
+
+# Spells
+- heal
+- rain
+
+# attacks
+- fire
