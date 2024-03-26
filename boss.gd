@@ -2,7 +2,7 @@ extends Node2D
 
 var rng = RandomNumberGenerator.new()
 
-var max_time = 11
+var max_time = 8
 var attack_num
 var attack_name := "none"
 var attacks = ["fire"]
@@ -13,7 +13,7 @@ var attacks = ["fire"]
 func _ready():
 	rng.randomize()
 	
-	timer.wait_time = rng.randi_range(10, max_time)
+	timer.wait_time = rng.randi_range(5, 8)
 	timer.start()
 
 

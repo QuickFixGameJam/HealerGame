@@ -2,11 +2,13 @@ extends Node2D
 
 @onready var line_2d = $Points/Line2D
 
+# party members
 @onready var party_member_1 = $Party/MarginContainer/HBoxContainer/PartyMember1
 @onready var party_member_2 = $Party/MarginContainer/HBoxContainer/PartyMember2
 @onready var party_member_3 = $Party/MarginContainer/HBoxContainer/PartyMember3
 @onready var party_member_4 = $Party/MarginContainer/HBoxContainer/PartyMember4
-
+@onready var party_array := [party_member_1, party_member_2, party_member_3, party_member_4]
+var boss_target
 
 var target
 
@@ -21,7 +23,7 @@ var point7 := Vector2(400, 400)
 var point8 := Vector2(600, 400)
 var point9 := Vector2(800, 400)
 
-# possible arrays
+# possible spell arrays
 var heal_array := PackedVector2Array([point1, point2, point3, point6, point9, point8, point5])
 var heal_array_reverse := PackedVector2Array([point1, point2, point3, point6, point9, point8, point5])
 var rain_array := PackedVector2Array([point8, point5, point6, point3, point2, point1, point4])
@@ -77,8 +79,21 @@ func reverse_arrays():
 	rain_array_reverse.reverse()
 
 func attack_party_member(attack_name):
-	party_member_1.attacked(attack_name)
+	if check_party_status():
+		boss_target = party_array.pick_random()
+		while(boss_target.status_effect != " " and boss_target.status_effect != "dead"):
+			boss_target = party_array.pick_random()
+		boss_target.attacked(attack_name)
 
-
+func check_party_status():
+	if party_member_1.status_effect == " ":
+		return true
+	if party_member_2.status_effect == " ":
+		return true
+	if party_member_3.status_effect == " ":
+		return true
+	if party_member_4.status_effect == " ":
+		return true
+	return false
 
 

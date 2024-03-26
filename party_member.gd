@@ -35,5 +35,9 @@ func _on_button_pressed():
 
 
 func _on_timer_timeout():
-	if status_effect != " ":
-		$HealthBar.value -= 1
+	if status_effect != " " and status_effect != "dead":
+		$HealthBar.value -= 2
+	if $HealthBar.value == 0:
+		status_effect = "dead"
+		$Button.self_modulate.a = 150
+	$Sprite2D/Label.text = status_effect
