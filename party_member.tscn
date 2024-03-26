@@ -29,7 +29,7 @@ custom_minimum_size = Vector2(20, 25)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_05qfo")
 step = 1.0
-value = 50.0
+value = 100.0
 show_percentage = false
 
 [node name="Timer" type="Timer" parent="."]
@@ -38,6 +38,13 @@ autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_mmgal")
+
+[node name="Label" type="Label" parent="Sprite2D"]
+offset_left = -60.0
+offset_top = -90.0
+offset_right = 59.0
+offset_bottom = -64.0
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -2,6 +2,12 @@ extends Node2D
 
 @onready var line_2d = $Points/Line2D
 
+@onready var party_member_1 = $Party/MarginContainer/HBoxContainer/PartyMember1
+@onready var party_member_2 = $Party/MarginContainer/HBoxContainer/PartyMember2
+@onready var party_member_3 = $Party/MarginContainer/HBoxContainer/PartyMember3
+@onready var party_member_4 = $Party/MarginContainer/HBoxContainer/PartyMember4
+
+
 var target
 
 #points
@@ -18,6 +24,8 @@ var point9 := Vector2(800, 400)
 # possible arrays
 var heal_array := PackedVector2Array([point1, point2, point3, point6, point9, point8, point5])
 var heal_array_reverse := PackedVector2Array([point1, point2, point3, point6, point9, point8, point5])
+var rain_array := PackedVector2Array([point8, point5, point6, point3, point2, point1, point4])
+var rain_array_reverse := PackedVector2Array([point8, point5, point6, point3, point2, point1, point4])
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -51,16 +59,26 @@ func change_target(party_member):
 			$Points.show()
 
 func cast_spell(spell):
-	print("casting " + spell + " on " + target.name)
+	# print("casting " + spell + " on " + target.name)
 	$Points.hide()
 	target.healed(spell)
 
 func find_spell():
 	var points = line_2d.points
-	#print(points)
+	print(points)
 	
 	if points == heal_array or points == heal_array_reverse:
 		cast_spell("heal")
+	elif points == rain_array or points == rain_array_reverse:
+		cast_spell("rain")
 
 func reverse_arrays():
 	heal_array_reverse.reverse()
+	rain_array_reverse.reverse()
+
+func attack_party_member(attack_name):
+	party_member_1.attacked(attack_name)
+
+
+
+

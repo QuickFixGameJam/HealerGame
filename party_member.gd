@@ -1,12 +1,13 @@
 extends VBoxContainer
 
-var status_effect = "none"
+var status_effect = " "
 
-@export var party_member := "none"
+@export var party_member := " "
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Button.text = party_member
+	$Sprite2D/Label.text = status_effect
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -19,16 +20,20 @@ func healed(spell_name):
 	if spell_name == "rain":
 		# wet animation
 		if status_effect == "on fire":
-			status_effect = "none"
+			status_effect = " "
+	$Sprite2D/Label.text = status_effect
 
 func attacked(attack_name):
 	if attack_name == "fire":
 		status_effect = "on fire"
+	if attack_name == "poison":
+		status_effect = "poisoned"
+	$Sprite2D/Label.text = status_effect
 
 func _on_button_pressed():
 	get_parent().get_parent().get_parent().get_parent().change_target(self)
 
 
 func _on_timer_timeout():
-	if status_effect != "none":
+	if status_effect != " ":
 		$HealthBar.value -= 1
