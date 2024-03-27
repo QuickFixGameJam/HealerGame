@@ -1,6 +1,7 @@
 extends VBoxContainer
 
 var status_effect = " "
+var rng = RandomNumberGenerator.new()
 
 @export var party_member := " "
 
@@ -10,6 +11,9 @@ var status_effect = " "
 func _ready():
 	$Button.text = party_member
 	$Sprite2D/Label.text = status_effect
+	rng.randomize()
+	$AttackTimer.wait_time = rng.randi_range(2, 4)
+	$AttackTimer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -56,3 +60,4 @@ func _on_attack_timer_timeout():
 	# attack animation
 	# await animation finish
 	get_parent().get_parent().get_parent().get_parent().attack_boss()
+	$AttackTimer.wait_time = rng.randi_range(1, 3)
