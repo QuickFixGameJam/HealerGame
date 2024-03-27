@@ -1,6 +1,6 @@
 # TO DO
 general:
-- come up with name
+- come up with name -> Sacred Scribbles
 - write list of spells
 - write list of attacks/status effects
 - come up with names / appearance for party members
