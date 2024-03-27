@@ -16,8 +16,7 @@ art:
 - spell animations
 
 programming:
-- party member attacks
-- party member death (and revival spell?)
+- spellbook
 - poison attack / cure spell
 - tutorial
 - heal over time spell?
@@ -34,6 +33,8 @@ sound:
 # Spells
 - heal
 - rain
+- cure
 
 # attacks
 - fire
+- poison
