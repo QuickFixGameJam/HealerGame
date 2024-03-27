@@ -2,6 +2,9 @@ extends Node2D
 
 @onready var line_2d = $Points/Line2D
 
+@onready var boss = $Boss
+
+
 # party members
 @onready var party_member_1 = $Party/MarginContainer/HBoxContainer/PartyMember1
 @onready var party_member_2 = $Party/MarginContainer/HBoxContainer/PartyMember2
@@ -28,6 +31,8 @@ var heal_array := PackedVector2Array([point1, point2, point3, point6, point9, po
 var heal_array_reverse := PackedVector2Array([point1, point2, point3, point6, point9, point8, point5])
 var rain_array := PackedVector2Array([point8, point5, point6, point3, point2, point1, point4])
 var rain_array_reverse := PackedVector2Array([point8, point5, point6, point3, point2, point1, point4])
+var cure_array = PackedVector2Array([point2, point1, point5, point9, point6])
+var cure_array_reverse = PackedVector2Array([point2, point1, point5, point9, point6])
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -73,10 +78,13 @@ func find_spell():
 		cast_spell("heal")
 	elif points == rain_array or points == rain_array_reverse:
 		cast_spell("rain")
+	elif points == cure_array or points == cure_array_reverse:
+		cast_spell("cure")
 
 func reverse_arrays():
 	heal_array_reverse.reverse()
 	rain_array_reverse.reverse()
+	cure_array_reverse.reverse()
 
 func attack_party_member(attack_name):
 	if check_party_status():
@@ -96,4 +104,5 @@ func check_party_status():
 		return true
 	return false
 
-
+func attack_boss():
+	boss.get_hit()

@@ -2,10 +2,10 @@ extends Node2D
 
 var rng = RandomNumberGenerator.new()
 
-var max_time = 8
+var max_time = 5
 var attack_num
 var attack_name := "none"
-var attacks = ["fire"]
+var attacks = ["fire", "poison"]
 
 @onready var timer = $Timer
 
@@ -13,7 +13,7 @@ var attacks = ["fire"]
 func _ready():
 	rng.randomize()
 	
-	timer.wait_time = rng.randi_range(5, 8)
+	timer.wait_time = rng.randi_range(3, 8)
 	timer.start()
 
 
@@ -26,6 +26,14 @@ func attack():
 	attack_name = attacks.pick_random()
 	get_parent().attack_party_member(attack_name)
 	# animated_sprite_2d.play(attack_name)
+
+func get_hit():
+	$HealthBar.value -= 1
+	if $HealthBar.value <= 0:
+		# death animation
+		visible = false
+		timer.stop()
+
 
 func _on_timer_timeout():
 	attack()
