@@ -21,6 +21,9 @@ programming:
 - heal over time spell?
 - damage buff spell?
 - shield spell?
+- main menu transition
+- game over
+- boss death
 
 sound:
 - battle music
