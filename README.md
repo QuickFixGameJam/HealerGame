@@ -17,11 +17,15 @@ art:
 
 programming:
 - spellbook
-- poison attack / cure spell
 - tutorial
 - heal over time spell?
 - damage buff spell?
 - shield spell?
+- main menu transition
+- game over
+- boss death
+- boss basic attack
+- intro
 
 sound:
 - battle music

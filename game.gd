@@ -46,6 +46,7 @@ func _process(delta):
 
 func new_point(point):
 	if !line_2d.points.has(point.position):
+		SoundPlayer.play_sound(SoundPlayer.MAGIC1)
 		line_2d.add_point(point.position)
 
 func change_target(party_member):
@@ -87,10 +88,16 @@ func reverse_arrays():
 	cure_array_reverse.reverse()
 
 func attack_party_member(attack_name):
-	if check_party_status():
-		boss_target = party_array.pick_random()
-		while(boss_target.status_effect != " " and boss_target.status_effect != "dead"):
+	if attack_name != "basic":
+		if check_party_status():
 			boss_target = party_array.pick_random()
+			while(boss_target.status_effect != " " and boss_target.status_effect != "dead"):
+				boss_target = party_array.pick_random()
+				if check_party_status() == false:
+					break
+			boss_target.attacked(attack_name)
+	else:
+		boss_target = party_array.pick_random()
 		boss_target.attacked(attack_name)
 
 func check_party_status():
@@ -106,3 +113,4 @@ func check_party_status():
 
 func attack_boss():
 	boss.get_hit()
+	SoundPlayer.play_attack_sound()
