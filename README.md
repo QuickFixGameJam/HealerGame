@@ -24,6 +24,7 @@ programming:
 - main menu transition
 - game over
 - boss death
+- boss basic attack
 
 sound:
 - battle music
