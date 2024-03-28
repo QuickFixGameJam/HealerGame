@@ -6,14 +6,17 @@ var rng = RandomNumberGenerator.new()
 @export var party_member := " "
 
 @onready var default_color = $Button.self_modulate
+@onready var animation_player = $AnimationPlayer
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Button.text = party_member
 	$Sprite2D/Label.text = status_effect
 	rng.randomize()
-	$AttackTimer.wait_time = rng.randi_range(2, 4)
+	$AttackTimer.wait_time = rng.randi_range(1, 5)
 	$AttackTimer.start()
+	animation_player.play("idle")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -43,10 +46,13 @@ func attacked(attack_name):
 		status_effect = "on fire"
 		$Button.self_modulate = Color8(255, 50, 50)
 		SoundPlayer.play_sound(SoundPlayer.FIREATTACK)
-	if attack_name == "poison":
+	elif attack_name == "poison":
 		status_effect = "poisoned"
 		$Button.self_modulate = Color8(50, 255, 50)
-		#SoundPlayer.play_sound(SoundPlayer.POISONATTACK)
+		SoundPlayer.play_sound(SoundPlayer.POISONATTACK)
+	elif attack_name == "basic":
+		SoundPlayer.play_sound(SoundPlayer.BASICATTACK)
+		$HealthBar.value -= 20
 	$Sprite2D/Label.text = status_effect
 
 func _on_button_pressed():
@@ -58,7 +64,10 @@ func _on_timer_timeout():
 		$HealthBar.value -= 2
 	if $HealthBar.value <= 0:
 		status_effect = "dead"
-		$Button.self_modulate.a = 150
+		$Button.self_modulate = Color8(255, 255, 255, 100)
+		animation_player.play("dead")
+		$Timer.stop()
+		SoundPlayer.play_sound(SoundPlayer.THUD)
 	$Sprite2D/Label.text = status_effect
 
 
