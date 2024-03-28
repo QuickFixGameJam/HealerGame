@@ -25,6 +25,7 @@ programming:
 - game over
 - boss death
 - boss basic attack
+- intro
 
 sound:
 - battle music
