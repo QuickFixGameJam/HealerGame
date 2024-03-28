@@ -118,6 +118,7 @@ offset_bottom = 487.0
 text = "Back"
 
 [node name="NextButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 659.0
 offset_top = 457.0
 offset_right = 704.0

@@ -21,13 +21,17 @@ func _process(delta):
 
 func healed(spell_name):
 	if spell_name == "heal":
+		SoundPlayer.play_sound(SoundPlayer.HEAL)
 		# heal animation
 		$HealthBar.value += $HealthBar.max_value * 0.5
 	if spell_name == "rain":
+		SoundPlayer.play_sound(SoundPlayer.RAIN)
 		# wet animation
 		if status_effect == "on fire":
 			status_effect = " "
 	if spell_name == "cure":
+		SoundPlayer.play_sound(SoundPlayer.CURE)
+		# cure animation
 		if status_effect == "poisoned":
 			status_effect = " "
 	$Sprite2D/Label.text = status_effect
@@ -38,9 +42,11 @@ func attacked(attack_name):
 	if attack_name == "fire":
 		status_effect = "on fire"
 		$Button.self_modulate = Color8(255, 50, 50)
+		SoundPlayer.play_sound(SoundPlayer.FIREATTACK)
 	if attack_name == "poison":
 		status_effect = "poisoned"
 		$Button.self_modulate = Color8(50, 255, 50)
+		#SoundPlayer.play_sound(SoundPlayer.POISONATTACK)
 	$Sprite2D/Label.text = status_effect
 
 func _on_button_pressed():
