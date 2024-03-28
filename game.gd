@@ -33,6 +33,8 @@ var rain_array := PackedVector2Array([point8, point5, point6, point3, point2, po
 var rain_array_reverse := PackedVector2Array([point8, point5, point6, point3, point2, point1, point4])
 var cure_array = PackedVector2Array([point2, point1, point5, point9, point6])
 var cure_array_reverse = PackedVector2Array([point2, point1, point5, point9, point6])
+var defrost_array = PackedVector2Array([point1, point4, point8, point6, point3])
+var defrost_array_reverse = PackedVector2Array([point1, point4, point8, point6, point3])
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -81,24 +83,30 @@ func find_spell():
 		cast_spell("rain")
 	elif points == cure_array or points == cure_array_reverse:
 		cast_spell("cure")
+	elif points == defrost_array or points == defrost_array_reverse:
+		cast_spell("defrost")
 
 func reverse_arrays():
 	heal_array_reverse.reverse()
 	rain_array_reverse.reverse()
 	cure_array_reverse.reverse()
+	defrost_array_reverse.reverse()
 
 func attack_party_member(attack_name):
-	if attack_name != "basic":
+	if attack_name == "basic":
+		boss_target = party_array.pick_random()
+		while(boss_target.status_effect == "dead"):
+			boss_target = party_array.pick_random()
+		boss_target.attacked(attack_name)
+	else:
 		if check_party_status():
 			boss_target = party_array.pick_random()
 			while(boss_target.status_effect != " " and boss_target.status_effect != "dead"):
+				print(boss_target)
 				boss_target = party_array.pick_random()
 				if check_party_status() == false:
 					break
 			boss_target.attacked(attack_name)
-	else:
-		boss_target = party_array.pick_random()
-		boss_target.attacked(attack_name)
 
 func check_party_status():
 	if party_member_1.status_effect == " ":

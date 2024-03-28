@@ -5,7 +5,7 @@ var rng = RandomNumberGenerator.new()
 var max_time = 5
 var attack_num
 var attack_name := "none"
-var attacks = ["fire", "poison", "basic"]
+var attacks = ["fire", "poison", "basic", "freeze"]
 
 @onready var timer = $Timer
 @onready var animation_player = $AnimationPlayer
@@ -25,8 +25,13 @@ func _process(delta):
 
 
 func attack():
-	attack_name = attacks.pick_random()
-	# animated_sprite_2d.play(attack_name)
+	if get_parent().check_party_status():
+		attack_name = attacks.pick_random()
+	else:
+		attack_name = "basic"
+	
+	print(attack_name)
+	
 	animation_player.play(attack_name)
 	await animation_player.animation_finished
 	get_parent().attack_party_member(attack_name)
