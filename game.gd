@@ -113,4 +113,4 @@ func check_party_status():
 
 func attack_boss():
 	boss.get_hit()
-	SoundPlayer.play_attack_sound()
+	#SoundPlayer.play_attack_sound()

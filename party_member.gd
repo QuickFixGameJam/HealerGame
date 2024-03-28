@@ -66,6 +66,9 @@ func set_sprite():
 	else:
 		$Character/Sprite2D.texture = preload("res://images/balthazar.png")
 
+func attack_sound():
+	SoundPlayer.play_attack_sound()
+
 func _on_button_pressed():
 	get_parent().get_parent().get_parent().get_parent().change_target(self)
 
