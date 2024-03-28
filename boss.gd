@@ -5,9 +5,11 @@ var rng = RandomNumberGenerator.new()
 var max_time = 5
 var attack_num
 var attack_name := "none"
-var attacks = ["fire", "poison"]
+var attacks = ["fire", "poison", "basic"]
 
 @onready var timer = $Timer
+@onready var animation_player = $AnimationPlayer
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,8 +26,12 @@ func _process(delta):
 
 func attack():
 	attack_name = attacks.pick_random()
-	get_parent().attack_party_member(attack_name)
 	# animated_sprite_2d.play(attack_name)
+	animation_player.play(attack_name)
+	await animation_player.animation_finished
+	get_parent().attack_party_member(attack_name)
+	animation_player.play("return")
+	await animation_player.animation_finished
 
 func get_hit():
 	$HealthBar.value -= 1

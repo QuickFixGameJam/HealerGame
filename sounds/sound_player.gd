@@ -8,6 +8,7 @@ const ATTACK3 = preload("res://sounds/attack3.wav")
 const ATTACK4 = preload("res://sounds/attack4.wav")
 const ATTACK5 = preload("res://sounds/attack5.wav")
 const ATTACK_SOUNDS = [ATTACK2, ATTACK3, ATTACK4, ATTACK5]
+const THUD = preload("res://sounds/thud.wav")
 
 const CAST = preload("res://sounds/cast.wav")
 const CURE = preload("res://sounds/cure.wav")
@@ -19,6 +20,7 @@ const SHIELD = preload("res://sounds/shield.wav")
 
 const FIREATTACK = preload("res://sounds/fireattack.wav")
 const POISONATTACK = preload("res://sounds/poisonattack.wav")
+const BASICATTACK = preload("res://sounds/basicattack.wav")
 
 func play_sound(sound):
 	for audioStreamPlayer in sound_effect_players.get_children():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cppgwq8fo0wrc"]
+[gd_scene load_steps=9 format=3 uid="uid://cppgwq8fo0wrc"]
 
 [ext_resource type="Texture2D" uid="uid://bqbvrurypofs2" path="res://icon.svg" id="1_qc2s4"]
 [ext_resource type="Script" path="res://boss.gd" id="1_timan"]
@@ -14,6 +14,87 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="Animation" id="Animation_lpedt"]
+resource_name = "basic"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(150, 0), Vector2(-150, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dqasg"]
+resource_name = "return"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_l78v5"]
+resource_name = "fire"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_65g52"]
+resource_name = "poison"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1vpvl"]
+_data = {
+"basic": SubResource("Animation_lpedt"),
+"fire": SubResource("Animation_l78v5"),
+"poison": SubResource("Animation_65g52"),
+"return": SubResource("Animation_dqasg")
+}
 
 [node name="Boss" type="Node2D"]
 position = Vector2(1103, 264)
@@ -33,8 +114,14 @@ offset_top = -160.0
 offset_right = 133.0
 offset_bottom = -135.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_h2uog")
+max_value = 200.0
 step = 1.0
-value = 100.0
+value = 200.0
 show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1vpvl")
+}
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -13,7 +13,6 @@ func _process(delta):
 		get_parent().get_parent().new_point(self)
 		$Sprite2D.modulate = Color(255,255,255)
 		$CPUParticles2D.emitting = true
-		SoundPlayer.play_sound(SoundPlayer.MAGIC1)
 	
 	if Input.is_action_just_released("left_mouse_click"):
 		$Sprite2D.modulate = Color(0,0,0)
@@ -26,7 +25,7 @@ func _on_mouse_entered():
 		get_parent().get_parent().new_point(self)
 		$Sprite2D.modulate = Color(255,255,255)
 		$CPUParticles2D.emitting = true
-		SoundPlayer.play_sound(SoundPlayer.MAGIC1)
+
 
 func _on_mouse_exited():
 	mouse_entered = false
