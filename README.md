@@ -17,7 +17,6 @@ art:
 
 programming:
 - spellbook
-- poison attack / cure spell
 - tutorial
 - heal over time spell?
 - damage buff spell?
