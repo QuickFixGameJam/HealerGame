@@ -39,6 +39,7 @@ var defrost_array_reverse = PackedVector2Array([point1, point4, point8, point6, 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	reverse_arrays()
+	SoundPlayer.play_music(SoundPlayer.BATTLE)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -102,7 +103,6 @@ func attack_party_member(attack_name):
 		if check_party_status():
 			boss_target = party_array.pick_random()
 			while(boss_target.status_effect != " " and boss_target.status_effect != "dead"):
-				print(boss_target)
 				boss_target = party_array.pick_random()
 				if check_party_status() == false:
 					break
@@ -123,4 +123,3 @@ func check_party_status():
 
 func attack_boss():
 	boss.get_hit()
-	#SoundPlayer.play_attack_sound()

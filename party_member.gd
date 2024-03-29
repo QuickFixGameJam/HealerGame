@@ -30,25 +30,26 @@ func healed(spell_name):
 	if spell_name == "heal":
 		SoundPlayer.play_sound(SoundPlayer.HEAL)
 		# heal animation
-		$HealthBar.value += $HealthBar.max_value * 0.5
+		if status_effect != "dead": $HealthBar.value += $HealthBar.max_value * 0.5
 	if spell_name == "rain":
 		SoundPlayer.play_sound(SoundPlayer.RAIN)
 		# wet animation
 		if status_effect == "on fire":
-			$Fire.emitting=false
+			$Character/Sprite2D/Fire.emitting=false
 			status_effect = " "
 	if spell_name == "cure":
 		SoundPlayer.play_sound(SoundPlayer.CURE)
 		# cure animation
 		if status_effect == "poisoned":
-			$Poison.emitting=false
+			$Character/Sprite2D/Poison.emitting=false
 			status_effect = " "
 	if spell_name == "defrost":
-		SoundPlayer.play_sound(SoundPlayer.CURE)
+		SoundPlayer.play_sound(SoundPlayer.DEFROST)
 		# defrost animation
 		if status_effect == "frozen":
-			$Freeze.emitting=false
+			$Character/Sprite2D/Freeze.emitting=false
 			status_animation_player.play("frozen")
+			status_animation_player.stop()
 			status_effect = " "
 	
 	$Character/Sprite2D/Label.text = status_effect
@@ -57,12 +58,12 @@ func healed(spell_name):
 
 func attacked(attack_name):
 	if attack_name == "fire":
-		$Fire.emitting=true
+		$Character/Sprite2D/Fire.emitting=true
 		status_effect = "on fire"
 		$Button.self_modulate = Color8(255, 50, 50)
 		SoundPlayer.play_sound(SoundPlayer.FIREATTACK)
 	elif attack_name == "poison":
-		$Poison.emitting=true
+		$Character/Sprite2D/Poison.emitting=true
 		status_effect = "poisoned"
 		$Button.self_modulate = Color8(50, 255, 50)
 		SoundPlayer.play_sound(SoundPlayer.POISONATTACK)
@@ -70,17 +71,23 @@ func attacked(attack_name):
 		SoundPlayer.play_sound(SoundPlayer.BASICATTACK)
 		$HealthBar.value -= 20
 	elif attack_name == "freeze":
-		$Freeze.emitting=true
+		$Character/Sprite2D/Freeze.emitting=true
 		status_effect = "frozen"
 		$Button.self_modulate = Color8(50, 255, 255)
-		SoundPlayer.play_sound(SoundPlayer.POISONATTACK)
+		SoundPlayer.play_sound(SoundPlayer.FREEZEATTACK)
 		status_animation_player.play("frozen")
 	$Character/Sprite2D/Label.text = status_effect
 
 func set_sprite():
 	if party_member == "Balthazar":
 		$Character/Sprite2D.texture = preload("res://images/balthazar.png")
-	if party_member == "Spellbook":
+	elif party_member == "Tapeworm":
+		$Character/Sprite2D.texture = preload("res://images/tapeworm.png")
+	elif party_member == "Scotty Potty":
+		$Character/Sprite2D.texture = preload("res://images/archer.png")
+	elif party_member == "Knife Rat":
+		$Character/Sprite2D.texture = preload("res://images/rat.png")
+	elif party_member == "Spellbook":
 		$Character/Sprite2D.texture = null
 	else:
 		$Character/Sprite2D.texture = preload("res://images/balthazar.png")
@@ -94,13 +101,18 @@ func _on_button_pressed():
 
 func _on_timer_timeout():
 	if status_effect != " " and status_effect != "dead":
-		$HealthBar.value -= 2
+		$HealthBar.value -= 1
 	if $HealthBar.value <= 0:
 		status_effect = "dead"
 		$Button.self_modulate = Color8(255, 255, 255, 100)
 		animation_player.play("dead")
 		$Timer.stop()
 		SoundPlayer.play_sound(SoundPlayer.THUD)
+		status_animation_player.stop()
+		$Character/Sprite2D/Fire.emitting=false
+		$Character/Sprite2D/Poison.emitting=false
+		$Character/Sprite2D/Freeze.emitting=false
+		$Character/Sprite2D.texture = preload("res://images/grave.png")
 	$Character/Sprite2D/Label.text = status_effect
 
 

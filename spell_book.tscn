@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8b0632vg1gmp"]
+[gd_scene load_steps=5 format=3 uid="uid://b8b0632vg1gmp"]
 
 [ext_resource type="Script" path="res://spell_book.gd" id="1_abpy5"]
 [ext_resource type="Texture2D" uid="uid://bugd6u0n6u1ml" path="res://images/spellbook/default.png" id="1_f04gx"]
+[ext_resource type="Texture2D" uid="uid://bjtsnt1ln3m4c" path="res://images/spellbook/book.png" id="2_1jcky"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dnr43"]
 bg_color = Color(1, 0.831373, 0.643137, 1)
@@ -27,6 +28,7 @@ mouse_filter = 2
 script = ExtResource("1_abpy5")
 
 [node name="Panel" type="Panel" parent="."]
+visible = false
 layout_mode = 2
 offset_right = 360.0
 offset_bottom = 501.0
@@ -34,6 +36,7 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_dnr43")
 
 [node name="Panel2" type="Panel" parent="."]
+visible = false
 layout_mode = 2
 offset_left = 360.0
 offset_right = 720.0
@@ -41,14 +44,18 @@ offset_bottom = 501.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_dnr43")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 501.0
+texture = ExtResource("2_1jcky")
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_right = 320.0
-offset_bottom = 501.0
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+offset_left = 40.0
+offset_top = 26.0
+offset_right = 360.0
+offset_bottom = 450.0
 
 [node name="Page1" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -77,12 +84,10 @@ autowrap_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = 360.0
-offset_right = 720.0
-offset_bottom = 501.0
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
+offset_left = 373.0
+offset_top = 40.0
+offset_right = 693.0
+offset_bottom = 453.0
 theme_override_constants/margin_bottom = 20
 
 [node name="Page2" type="HBoxContainer" parent="MarginContainer2"]
@@ -111,18 +116,18 @@ autowrap_mode = 2
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 456.0
-offset_right = 61.0
-offset_bottom = 487.0
+offset_left = 48.0
+offset_top = 432.0
+offset_right = 93.0
+offset_bottom = 463.0
 text = "Back"
 
 [node name="NextButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 659.0
-offset_top = 457.0
-offset_right = 704.0
-offset_bottom = 488.0
+offset_left = 627.0
+offset_top = 433.0
+offset_right = 672.0
+offset_bottom = 464.0
 text = "Next"
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

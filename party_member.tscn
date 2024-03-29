@@ -24,6 +24,16 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_f4luo"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_tvhnf"]
+offsets = PackedFloat32Array(0, 0.0906702, 0.911958, 1)
+colors = PackedColorArray(1, 0.917647, 0, 0, 1, 0.917647, 0, 1, 1, 0, 0.0588235, 1, 1, 0, 0.0588235, 0)
+
+[sub_resource type="Gradient" id="Gradient_fim5s"]
+colors = PackedColorArray(0.0823529, 1, 0.0823529, 1, 0.847059, 0.0470588, 1, 1)
+
 [sub_resource type="Animation" id="Animation_264o4"]
 length = 0.001
 tracks/0/type = "value"
@@ -128,16 +138,6 @@ _data = {
 "idle": SubResource("Animation_x3kgf")
 }
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_f4luo"]
-blend_mode = 1
-
-[sub_resource type="Gradient" id="Gradient_tvhnf"]
-offsets = PackedFloat32Array(0, 0.0906702, 0.911958, 1)
-colors = PackedColorArray(1, 0.917647, 0, 0, 1, 0.917647, 0, 1, 1, 0, 0.0588235, 1, 1, 0, 0.0588235, 0)
-
-[sub_resource type="Gradient" id="Gradient_fim5s"]
-colors = PackedColorArray(0.0823529, 1, 0.0823529, 1, 0.847059, 0.0470588, 1, 1)
-
 [node name="PartyMember" type="VBoxContainer"]
 custom_minimum_size = Vector2(180, 180)
 script = ExtResource("1_0j8a1")
@@ -169,6 +169,7 @@ texture = ExtResource("2_xsc85")
 offset = Vector2(0, -350)
 
 [node name="Label" type="Label" parent="Character/Sprite2D"]
+visible = false
 offset_left = -115.217
 offset_top = -741.544
 offset_right = 64.7829
@@ -176,28 +177,10 @@ offset_bottom = -688.544
 theme_override_font_sizes/font_size = 36
 horizontal_alignment = 1
 
-[node name="AttackTimer" type="Timer" parent="."]
-wait_time = 2.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_4j674")
-}
-autoplay = "idle"
-
-[node name="AttackAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_4j674")
-}
-
-[node name="StatusAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_4j674")
-}
-
-[node name="Fire" type="CPUParticles2D" parent="."]
+[node name="Fire" type="CPUParticles2D" parent="Character/Sprite2D"]
 material = SubResource("CanvasItemMaterial_f4luo")
-position = Vector2(1, -19)
+position = Vector2(3.33333, -63.3333)
+scale = Vector2(3.33333, 3.33333)
 emitting = false
 amount = 16
 explosiveness = 0.1
@@ -215,9 +198,10 @@ scale_amount_min = 0.5
 scale_amount_max = 0.5
 color_initial_ramp = SubResource("Gradient_tvhnf")
 
-[node name="Poison" type="CPUParticles2D" parent="."]
+[node name="Poison" type="CPUParticles2D" parent="Character/Sprite2D"]
 material = SubResource("CanvasItemMaterial_f4luo")
-position = Vector2(-2, 19)
+position = Vector2(-6.66667, 63.3333)
+scale = Vector2(3.33333, 3.33333)
 emitting = false
 amount = 4
 lifetime = 2.0
@@ -235,9 +219,10 @@ scale_amount_max = 0.1
 color = Color(0, 1, 0, 1)
 color_initial_ramp = SubResource("Gradient_fim5s")
 
-[node name="Freeze" type="CPUParticles2D" parent="."]
+[node name="Freeze" type="CPUParticles2D" parent="Character/Sprite2D"]
 material = SubResource("CanvasItemMaterial_f4luo")
-position = Vector2(-2, 19)
+position = Vector2(-6.66667, 63.3333)
+scale = Vector2(3.33333, 3.33333)
 emitting = false
 amount = 6
 lifetime = 2.0
@@ -252,6 +237,25 @@ initial_velocity_min = 50.0
 initial_velocity_max = 50.0
 scale_amount_min = 0.1
 scale_amount_max = 0.1
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_4j674")
+}
+
+[node name="AttackAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4j674")
+}
+
+[node name="StatusAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4j674")
+}
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

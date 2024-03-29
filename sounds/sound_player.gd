@@ -17,10 +17,17 @@ const HEAL = preload("res://sounds/heal.wav")
 const MAGIC1 = preload("res://sounds/magic1.wav")
 const RAIN = preload("res://sounds/rain.wav")
 const SHIELD = preload("res://sounds/shield.wav")
+const DEFROST = preload("res://sounds/defrost.wav")
 
 const FIREATTACK = preload("res://sounds/fireattack.wav")
 const POISONATTACK = preload("res://sounds/poisonattack.wav")
 const BASICATTACK = preload("res://sounds/basicattack.wav")
+const FREEZEATTACK = preload("res://sounds/freeze.wav")
+
+const PAGE = preload("res://sounds/page.wav")
+
+const AMBIENCE = preload("res://sounds/ambience.wav")
+const BATTLE = preload("res://sounds/quick_fix.ogg")
 
 func play_sound(sound):
 	for audioStreamPlayer in sound_effect_players.get_children():
@@ -28,6 +35,10 @@ func play_sound(sound):
 			audioStreamPlayer.stream = sound
 			audioStreamPlayer.play()
 			break
+
+func play_music(sound):
+	$MusicPlayer.stream = sound
+	$MusicPlayer.play()
 
 func play_attack_sound():
 	play_sound(ATTACK_SOUNDS.pick_random())

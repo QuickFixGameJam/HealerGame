@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://by733go3slss6"]
+[gd_scene load_steps=10 format=3 uid="uid://by733go3slss6"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_qm4o3"]
 [ext_resource type="PackedScene" uid="uid://dshpn8l2mhj61" path="res://drawing_point.tscn" id="2_aulhk"]
 [ext_resource type="PackedScene" uid="uid://cppgwq8fo0wrc" path="res://boss.tscn" id="2_obq33"]
+[ext_resource type="Texture2D" uid="uid://bu5itcb5ijhur" path="res://images/background1.png" id="2_v0ahf"]
 [ext_resource type="PackedScene" uid="uid://thvnxqkocf4w" path="res://party_member.tscn" id="3_ugncn"]
+[ext_resource type="Texture2D" uid="uid://tuawy73pfu0h" path="res://images/party-panel.png" id="4_oi7ts"]
 [ext_resource type="PackedScene" uid="uid://b8b0632vg1gmp" path="res://spell_book.tscn" id="5_sxlfm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g1xs3"]
@@ -33,7 +35,20 @@ corner_radius_bottom_left = 25
 [node name="Game" type="Node2D"]
 script = ExtResource("1_qm4o3")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("2_v0ahf")
+expand_mode = 1
+
 [node name="Boss" parent="." instance=ExtResource("2_obq33")]
+position = Vector2(1065, 286)
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_top = 504.0
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("4_oi7ts")
 
 [node name="Party" type="Control" parent="."]
 custom_minimum_size = Vector2(1280, 216)
@@ -45,6 +60,7 @@ offset_bottom = 722.0
 size_flags_horizontal = 4
 
 [node name="Panel" type="Panel" parent="Party"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,36 +96,33 @@ visible = false
 [node name="Sprite2D" parent="Party/MarginContainer/HBoxContainer/SpellBook/Character" index="0"]
 visible = false
 
-[node name="Label" parent="Party/MarginContainer/HBoxContainer/SpellBook/Character/Sprite2D" index="0"]
-visible = false
-
 [node name="PartyMember1" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
 layout_mode = 2
 party_member = "Balthazar"
 
 [node name="Character" parent="Party/MarginContainer/HBoxContainer/PartyMember1" index="3"]
-position = Vector2(-224, -128)
+position = Vector2(-224, -48)
 
 [node name="PartyMember2" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
 layout_mode = 2
-party_member = "PartyMember2"
+party_member = "Scotty Potty"
 
 [node name="Character" parent="Party/MarginContainer/HBoxContainer/PartyMember2" index="3"]
-position = Vector2(-288, -128)
+position = Vector2(-288, -48)
 
 [node name="PartyMember3" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
 layout_mode = 2
-party_member = "PartyMember3"
+party_member = "Knife Rat"
 
 [node name="Character" parent="Party/MarginContainer/HBoxContainer/PartyMember3" index="3"]
-position = Vector2(-344, -128)
+position = Vector2(-344, -48)
 
 [node name="PartyMember4" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
 layout_mode = 2
-party_member = "PartyMember4"
+party_member = "Tapeworm"
 
 [node name="Character" parent="Party/MarginContainer/HBoxContainer/PartyMember4" index="3"]
-position = Vector2(-392, -128)
+position = Vector2(-392, -48)
 
 [node name="Points" type="Node2D" parent="."]
 visible = false
@@ -163,6 +176,18 @@ position = Vector2(800, 400)
 
 [node name="SpellBook" parent="." instance=ExtResource("5_sxlfm")]
 visible = false
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(461, 474)
+
+[node name="Node2D4" type="Node2D" parent="."]
+position = Vector2(668, 474)
+
+[node name="Node2D2" type="Node2D" parent="."]
+position = Vector2(262, 474)
+
+[node name="Node2D3" type="Node2D" parent="."]
+position = Vector2(71, 474)
 
 [editable path="Party/MarginContainer/HBoxContainer/SpellBook"]
 [editable path="Party/MarginContainer/HBoxContainer/PartyMember1"]
