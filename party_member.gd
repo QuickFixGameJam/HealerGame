@@ -100,6 +100,7 @@ func attacked(attack_name):
 			$Button.self_modulate = Color8(50, 255, 50)
 			SoundPlayer.play_sound(SoundPlayer.POISONATTACK)
 		elif attack_name == "basic":
+			$Character/Sprite2D/Hit.emitting=true
 			SoundPlayer.play_sound(SoundPlayer.BASICATTACK)
 			if status_effect != " ":
 				$HealthBar.value -= 45
