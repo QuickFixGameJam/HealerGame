@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://thvnxqkocf4w"]
+[gd_scene load_steps=13 format=3 uid="uid://thvnxqkocf4w"]
 
 [ext_resource type="Script" path="res://party_member.gd" id="1_0j8a1"]
 [ext_resource type="Texture2D" uid="uid://bqbvrurypofs2" path="res://icon.svg" id="2_mmgal"]
+[ext_resource type="Texture2D" uid="uid://hrafyyrps7g8" path="res://images/Particles/Flame.png" id="3_nxsqg"]
+[ext_resource type="Texture2D" uid="uid://dcrd4dsucxgq1" path="res://images/Particles/Untitled_Artwork 2.png" id="4_vu1rn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gesn5"]
 corner_radius_top_left = 13
@@ -20,23 +22,6 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-
-[sub_resource type="Animation" id="Animation_x3kgf"]
-resource_name = "idle"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.95, 1.05), Vector2(1.05, 0.95)]
-}
 
 [sub_resource type="Animation" id="Animation_4kd7r"]
 length = 0.001
@@ -69,12 +54,36 @@ tracks/0/keys = {
 "values": [Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_x3kgf"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.95, 1.05), Vector2(1.05, 0.95)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4j674"]
 _data = {
 "RESET": SubResource("Animation_4kd7r"),
 "dead": SubResource("Animation_awk8l"),
 "idle": SubResource("Animation_x3kgf")
 }
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5dlnb"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_8ljub"]
+offsets = PackedFloat32Array(0, 0.0827858, 0.710907, 0.802891, 1)
+colors = PackedColorArray(1, 0.760784, 0, 0, 0.0941176, 1, 0.0666667, 1, 0.0666667, 0.545098, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="PartyMember" type="VBoxContainer"]
 custom_minimum_size = Vector2(180, 180)
@@ -104,10 +113,10 @@ texture = ExtResource("2_mmgal")
 offset = Vector2(0, -64)
 
 [node name="Label" type="Label" parent="Sprite2D"]
-offset_left = -60.0
-offset_top = -90.0
-offset_right = 59.0
-offset_bottom = -64.0
+offset_left = -42.0
+offset_top = -74.0
+offset_right = 77.0
+offset_bottom = -48.0
 horizontal_alignment = 1
 
 [node name="AttackTimer" type="Timer" parent="."]
@@ -117,6 +126,41 @@ wait_time = 2.0
 libraries = {
 "": SubResource("AnimationLibrary_4j674")
 }
+
+[node name="Fire" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_5dlnb")
+emitting = false
+amount = 16
+explosiveness = 0.1
+randomness = 0.5
+lifetime_randomness = 0.3
+texture = ExtResource("3_nxsqg")
+direction = Vector2(0, -1)
+spread = 30.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 175.0
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_8ljub")
+
+[node name="Poison" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_5dlnb")
+position = Vector2(0, 85)
+amount = 4
+lifetime = 2.0
+explosiveness = 0.1
+randomness = 0.5
+lifetime_randomness = 0.3
+texture = ExtResource("4_vu1rn")
+direction = Vector2(0, -1)
+spread = 30.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+color_ramp = SubResource("Gradient_8ljub")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

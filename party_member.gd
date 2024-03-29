@@ -31,11 +31,13 @@ func healed(spell_name):
 		SoundPlayer.play_sound(SoundPlayer.RAIN)
 		# wet animation
 		if status_effect == "on fire":
+			$Fire.emitting=false
 			status_effect = " "
 	if spell_name == "cure":
 		SoundPlayer.play_sound(SoundPlayer.CURE)
 		# cure animation
 		if status_effect == "poisoned":
+			$Poison.emitting=false
 			status_effect = " "
 	$Sprite2D/Label.text = status_effect
 	if status_effect == " ": 
@@ -43,10 +45,12 @@ func healed(spell_name):
 
 func attacked(attack_name):
 	if attack_name == "fire":
+		$Fire.emitting=true
 		status_effect = "on fire"
 		$Button.self_modulate = Color8(255, 50, 50)
 		SoundPlayer.play_sound(SoundPlayer.FIREATTACK)
 	elif attack_name == "poison":
+		$Poison.emitting=true
 		status_effect = "poisoned"
 		$Button.self_modulate = Color8(50, 255, 50)
 		SoundPlayer.play_sound(SoundPlayer.POISONATTACK)
