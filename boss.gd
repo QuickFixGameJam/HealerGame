@@ -46,6 +46,7 @@ func get_hit():
 		# death animation
 		visible = false
 		timer.stop()
+		get_tree().change_scene_to_file("res://game_over.tscn")
 
 
 func _on_timer_timeout():
