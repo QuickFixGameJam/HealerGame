@@ -35,16 +35,19 @@ func healed(spell_name):
 		SoundPlayer.play_sound(SoundPlayer.RAIN)
 		# wet animation
 		if status_effect == "on fire":
+			$Fire.emitting=false
 			status_effect = " "
 	if spell_name == "cure":
 		SoundPlayer.play_sound(SoundPlayer.CURE)
 		# cure animation
 		if status_effect == "poisoned":
+			$Poison.emitting=false
 			status_effect = " "
 	if spell_name == "defrost":
 		SoundPlayer.play_sound(SoundPlayer.CURE)
 		# defrost animation
 		if status_effect == "frozen":
+			$Freeze.emitting=false
 			status_animation_player.play("frozen")
 			status_effect = " "
 	
@@ -54,10 +57,12 @@ func healed(spell_name):
 
 func attacked(attack_name):
 	if attack_name == "fire":
+		$Fire.emitting=true
 		status_effect = "on fire"
 		$Button.self_modulate = Color8(255, 50, 50)
 		SoundPlayer.play_sound(SoundPlayer.FIREATTACK)
 	elif attack_name == "poison":
+		$Poison.emitting=true
 		status_effect = "poisoned"
 		$Button.self_modulate = Color8(50, 255, 50)
 		SoundPlayer.play_sound(SoundPlayer.POISONATTACK)
@@ -65,6 +70,7 @@ func attacked(attack_name):
 		SoundPlayer.play_sound(SoundPlayer.BASICATTACK)
 		$HealthBar.value -= 20
 	elif attack_name == "freeze":
+		$Freeze.emitting=true
 		status_effect = "frozen"
 		$Button.self_modulate = Color8(50, 255, 255)
 		SoundPlayer.play_sound(SoundPlayer.POISONATTACK)
