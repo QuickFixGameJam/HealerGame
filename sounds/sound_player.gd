@@ -23,6 +23,7 @@ const FIREATTACK = preload("res://sounds/fireattack.wav")
 const POISONATTACK = preload("res://sounds/poisonattack.wav")
 const BASICATTACK = preload("res://sounds/basicattack.wav")
 const FREEZEATTACK = preload("res://sounds/freeze.wav")
+const BOSSDEATH = preload("res://sounds/scream.wav")
 
 const PAGE = preload("res://sounds/page.wav")
 
