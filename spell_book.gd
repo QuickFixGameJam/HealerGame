@@ -37,7 +37,7 @@ func update_pages(current_page):
 		spell_description_2.text = "Warms up the target. Use it when someone is frozen solid."
 
 func _on_next_button_pressed():
-	if current_page < 3:
+	if current_page < 2:
 		current_page += 1
 		update_pages(current_page)
 		SoundPlayer.play_sound(SoundPlayer.PAGE)

@@ -89,10 +89,12 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uiwur"]
-particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 1.0
+particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
 scale_min = 3.0
 scale_max = 3.0
 color = Color(0.74902, 0.65098, 0.572549, 0.54902)
@@ -407,10 +409,10 @@ one_shot = true
 wait_time = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_4j674")
 }
-autoplay = "idle"
 
 [node name="AttackAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

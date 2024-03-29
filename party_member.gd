@@ -3,6 +3,7 @@ extends VBoxContainer
 var status_effect = " "
 var dead := false
 var rng = RandomNumberGenerator.new()
+var danger := false
 
 @export var party_member := " "
 
@@ -102,10 +103,8 @@ func attacked(attack_name):
 		elif attack_name == "basic":
 			$Character/Sprite2D/Hit.emitting=true
 			SoundPlayer.play_sound(SoundPlayer.BASICATTACK)
-			if status_effect != " ":
-				$HealthBar.value -= 45
-			else:
-				$HealthBar.value -= 20
+			$HealthBar.value -= 25
+			if danger: $HealthBar.value -= 20
 		elif attack_name == "freeze":
 			$Character/Sprite2D/Freeze.emitting=true
 			status_effect = "frozen"

@@ -115,7 +115,10 @@ func attack_party_member(attack_name):
 						if check_party_status() == false:
 							break
 					boss_target.attacked(attack_name)
-		if party_array.size() < 3: boss.berserk()
+		if party_array.size() < 3: 
+			boss.berserk()
+			boss_target = party_array.pick_random()
+		elif party_array.size() < 2: boss_target.danger = true
 
 func check_party_status():
 	if party_member_1.status_effect == " ":
