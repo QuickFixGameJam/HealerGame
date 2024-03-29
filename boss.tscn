@@ -46,6 +46,21 @@ tracks/0/keys = {
 "values": [Vector2(2, 2), Vector2(2, 3)]
 }
 
+[sub_resource type="Animation" id="Animation_jdcp3"]
+resource_name = "freeze"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2, 3)]
+}
+
 [sub_resource type="Animation" id="Animation_65g52"]
 resource_name = "poison"
 tracks/0/type = "value"
@@ -88,21 +103,6 @@ tracks/1/keys = {
 "values": [Vector2(2, 2)]
 }
 
-[sub_resource type="Animation" id="Animation_jdcp3"]
-resource_name = "freeze"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(2, 2), Vector2(2, 3)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1vpvl"]
 _data = {
 "basic": SubResource("Animation_lpedt"),
@@ -136,9 +136,9 @@ value = 200.0
 show_percentage = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "return"
 libraries = {
 "": SubResource("AnimationLibrary_1vpvl")
 }
+autoplay = "return"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
