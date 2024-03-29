@@ -136,8 +136,7 @@ offsets = PackedFloat32Array(0, 0.0906702, 0.911958, 1)
 colors = PackedColorArray(1, 0.917647, 0, 0, 1, 0.917647, 0, 1, 1, 0, 0.0588235, 1, 1, 0, 0.0588235, 0)
 
 [sub_resource type="Gradient" id="Gradient_fim5s"]
-offsets = PackedFloat32Array(0, 0.0946124, 0.865966, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0.0823529, 1, 0.0823529, 1, 0.847059, 0.0470588, 1, 1, 0.847059, 0.0470588, 1, 0)
+colors = PackedColorArray(0.0823529, 1, 0.0823529, 1, 0.847059, 0.0470588, 1, 1)
 
 [node name="PartyMember" type="VBoxContainer"]
 custom_minimum_size = Vector2(180, 180)
@@ -233,6 +232,7 @@ initial_velocity_min = 50.0
 initial_velocity_max = 100.0
 scale_amount_min = 0.1
 scale_amount_max = 0.1
+color = Color(0, 1, 0, 1)
 color_initial_ramp = SubResource("Gradient_fim5s")
 
 [node name="Freeze" type="CPUParticles2D" parent="."]
