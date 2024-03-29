@@ -29,27 +29,22 @@ func _process(delta):
 func healed(spell_name):
 	if spell_name == "heal":
 		SoundPlayer.play_sound(SoundPlayer.HEAL)
-		$Character/Sprite2D/Heal.emitting=true
 		# heal animation
 		if status_effect != "dead": $HealthBar.value += $HealthBar.max_value * 0.5
 	if spell_name == "rain":
 		SoundPlayer.play_sound(SoundPlayer.RAIN)
-		$Character/Sprite2D/Cloud.emitting=true
-		$Character/Sprite2D/Rain.emitting=true
 		# wet animation
 		if status_effect == "on fire":
 			$Character/Sprite2D/Fire.emitting=false
 			status_effect = " "
 	if spell_name == "cure":
 		SoundPlayer.play_sound(SoundPlayer.CURE)
-		$Character/Sprite2D/Cure.emitting=true
 		# cure animation
 		if status_effect == "poisoned":
 			$Character/Sprite2D/Poison.emitting=false
 			status_effect = " "
 	if spell_name == "defrost":
 		SoundPlayer.play_sound(SoundPlayer.DEFROST)
-		$Character/Sprite2D/Defrost.emitting=true
 		# defrost animation
 		if status_effect == "frozen":
 			$Character/Sprite2D/Freeze.emitting=false

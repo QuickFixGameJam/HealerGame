@@ -1,15 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://thvnxqkocf4w"]
+[gd_scene load_steps=17 format=3 uid="uid://thvnxqkocf4w"]
 
 [ext_resource type="Script" path="res://party_member.gd" id="1_0j8a1"]
 [ext_resource type="Texture2D" uid="uid://cysr8ktgh28k0" path="res://images/balthazar.png" id="2_xsc85"]
 [ext_resource type="Texture2D" uid="uid://drl25y5u5imq2" path="res://images/VFX/Flame.png" id="3_m0yaq"]
 [ext_resource type="Texture2D" uid="uid://bbwlur10wxuqc" path="res://images/VFX/Posion.png" id="4_v5m3i"]
 [ext_resource type="Texture2D" uid="uid://c5meat8la6pil" path="res://images/VFX/Snow.png" id="5_cttrg"]
-[ext_resource type="Texture2D" uid="uid://qh43y0ga1cs" path="res://images/VFX/Heal.png" id="6_e4b7m"]
-[ext_resource type="Texture2D" uid="uid://dd0xf472e8fbr" path="res://images/VFX/Rain.png" id="7_b2r7d"]
-[ext_resource type="Texture2D" uid="uid://jqmrnwxlkosj" path="res://images/VFX/Cloud.png" id="8_cmkio"]
-[ext_resource type="Texture2D" uid="uid://cqdqixya2kyvm" path="res://images/VFX/Cure.png" id="9_yngmt"]
-[ext_resource type="Texture2D" uid="uid://dyax847ki8l83" path="res://images/VFX/Smoke.png" id="10_ojsnr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gesn5"]
 corner_radius_top_left = 13
@@ -38,15 +33,6 @@ colors = PackedColorArray(1, 0.917647, 0, 0, 1, 0.917647, 0, 1, 1, 0, 0.0588235,
 
 [sub_resource type="Gradient" id="Gradient_fim5s"]
 colors = PackedColorArray(0.0823529, 1, 0.0823529, 1, 0.847059, 0.0470588, 1, 1)
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tjfck"]
-blend_mode = 1
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rcvtg"]
-blend_mode = 1
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w2cht"]
-blend_mode = 1
 
 [sub_resource type="Animation" id="Animation_264o4"]
 length = 0.001
@@ -252,99 +238,14 @@ initial_velocity_max = 50.0
 scale_amount_min = 0.1
 scale_amount_max = 0.1
 
-[node name="Heal" type="CPUParticles2D" parent="Character/Sprite2D"]
-material = SubResource("CanvasItemMaterial_tjfck")
-position = Vector2(83.3333, 2000)
-emitting = false
-amount = 2
-lifetime = 3.0
-one_shot = true
-explosiveness = 0.1
-randomness = 0.5
-lifetime_randomness = 0.3
-texture = ExtResource("6_e4b7m")
-direction = Vector2(0, -1)
-gravity = Vector2(0, 0)
-initial_velocity_min = 50.0
-initial_velocity_max = 50.0
-color = Color(0, 0.768627, 0.0431373, 1)
-
-[node name="Rain" type="CPUParticles2D" parent="Character/Sprite2D"]
-material = SubResource("CanvasItemMaterial_rcvtg")
-position = Vector2(-10, -560)
-emitting = false
-amount = 16
-lifetime = 2.0
-one_shot = true
-randomness = 0.5
-lifetime_randomness = 0.3
-texture = ExtResource("7_b2r7d")
-direction = Vector2(0, 1)
-spread = 25.0
-gravity = Vector2(0, 50)
-initial_velocity_min = 52.6
-initial_velocity_max = 200.0
-scale_amount_min = 0.1
-scale_amount_max = 0.1
-
-[node name="Cloud" type="CPUParticles2D" parent="Character/Sprite2D"]
-position = Vector2(3.33333, -470)
-emitting = false
-amount = 1
-lifetime = 2.0
-one_shot = true
-texture = ExtResource("8_cmkio")
-gravity = Vector2(0, 0)
-scale_amount_min = 0.2
-scale_amount_max = 0.2
-
-[node name="Cure" type="CPUParticles2D" parent="Character/Sprite2D"]
-material = SubResource("CanvasItemMaterial_w2cht")
-position = Vector2(-6.66667, -36.6667)
-emitting = false
-amount = 4
-lifetime = 2.0
-one_shot = true
-explosiveness = 0.1
-randomness = 0.5
-lifetime_randomness = 0.3
-texture = ExtResource("9_yngmt")
-direction = Vector2(0, -1)
-spread = 30.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 50.0
-initial_velocity_max = 100.0
-scale_amount_min = 0.2
-scale_amount_max = 0.2
-color = Color(0, 1, 0.898039, 1)
-
-[node name="Defrost" type="CPUParticles2D" parent="Character/Sprite2D"]
-position = Vector2(3.33333, -286.667)
-emitting = false
-amount = 4
-lifetime = 2.0
-one_shot = true
-explosiveness = 0.1
-randomness = 0.5
-lifetime_randomness = 0.3
-texture = ExtResource("10_ojsnr")
-direction = Vector2(0, -1)
-spread = 30.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 50.0
-initial_velocity_max = 100.0
-scale_amount_min = 0.2
-scale_amount_max = 0.2
-color = Color(1, 1, 1, 0.666667)
-
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_4j674")
 }
-autoplay = "idle"
 
 [node name="AttackAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
