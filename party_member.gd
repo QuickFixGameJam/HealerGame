@@ -153,6 +153,12 @@ func _on_timer_timeout():
 		$Character/Sprite2D/Fire.emitting=false
 		$Character/Sprite2D/Poison.emitting=false
 		$Character/Sprite2D/Freeze.emitting=false
+		$Character/Sprite2D/Heal.emitting=false
+		$Character/Sprite2D/Rain.emitting=false
+		$Character/Sprite2D/Cloud.emitting=false
+		$Character/Sprite2D/Cure.emitting=false
+		$Character/Sprite2D/Defrost.emitting=false
+		$Character/Sprite2D/Hit.emitting=false
 		$Character/Sprite2D.texture = preload("res://images/grave.png")
 		dead = true
 		get_parent().get_parent().get_parent().get_parent().party_member_dead(self)
