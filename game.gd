@@ -117,6 +117,8 @@ func check_party_status():
 		return true
 	if party_member_4.status_effect == " ":
 		return true
+	if party_member_1.status_effect == "dead" and party_member_2.status_effect == "dead" and party_member_3.status_effect == "dead" and party_member_4.status_effect == "dead":
+		get_tree().change_scene_to_file("res://game_over.tscn")
 	return false
 
 func attack_boss():
