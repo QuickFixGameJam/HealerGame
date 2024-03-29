@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://thvnxqkocf4w"]
+[gd_scene load_steps=13 format=3 uid="uid://thvnxqkocf4w"]
 
 [ext_resource type="Script" path="res://party_member.gd" id="1_0j8a1"]
-[ext_resource type="Texture2D" uid="uid://cysr8ktgh28k0" path="res://images/balthazar.png" id="2_xsc85"]
+[ext_resource type="Texture2D" uid="uid://bqbvrurypofs2" path="res://icon.svg" id="2_mmgal"]
+[ext_resource type="Texture2D" uid="uid://hrafyyrps7g8" path="res://images/Particles/Flame.png" id="3_nxsqg"]
+[ext_resource type="Texture2D" uid="uid://dcrd4dsucxgq1" path="res://images/Particles/Untitled_Artwork 2.png" id="4_vu1rn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gesn5"]
 corner_radius_top_left = 13
@@ -21,34 +23,19 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="Animation" id="Animation_khr8v"]
-resource_name = "attack"
-length = 1.5
+[sub_resource type="Animation" id="Animation_4kd7r"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Character/Sprite2D:position")
-tracks/0/interp = 2
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 1.5),
-"transitions": PackedFloat32Array(1, 0.138696, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-50, 0), Vector2(0, 0)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"attack_sound"
-}]
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_awk8l"]
@@ -57,7 +44,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Character/Sprite2D:scale")
+tracks/0/path = NodePath("Sprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -74,54 +61,20 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Character/Sprite2D:scale")
+tracks/0/path = NodePath("Sprite2D:scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 1.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.97, 1.005), Vector2(1.005, 0.97)]
-}
-
-[sub_resource type="Animation" id="Animation_p54gi"]
-resource_name = "frozen"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Character/Sprite2D:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(10, 0), Vector2(-10, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_264o4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Character/Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(1, 1), Vector2(0.95, 1.05), Vector2(1.05, 0.95)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4j674"]
 _data = {
-"RESET": SubResource("Animation_264o4"),
-"attack": SubResource("Animation_khr8v"),
+"RESET": SubResource("Animation_4kd7r"),
 "dead": SubResource("Animation_awk8l"),
-"frozen": SubResource("Animation_p54gi"),
 "idle": SubResource("Animation_x3kgf")
 }
 
@@ -135,7 +88,6 @@ colors = PackedColorArray(1, 0.760784, 0, 0, 0.0941176, 1, 0.0666667, 1, 0.06666
 [node name="PartyMember" type="VBoxContainer"]
 custom_minimum_size = Vector2(180, 180)
 script = ExtResource("1_0j8a1")
-party_member = "none"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
@@ -155,36 +107,22 @@ show_percentage = false
 wait_time = 0.5
 autostart = true
 
-[node name="Character" type="Node2D" parent="."]
-scale = Vector2(0.3, 0.3)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 64)
+texture = ExtResource("2_mmgal")
+offset = Vector2(0, -64)
 
-[node name="Sprite2D" type="Sprite2D" parent="Character"]
-texture = ExtResource("2_xsc85")
-offset = Vector2(0, -350)
-
-[node name="Label" type="Label" parent="Character/Sprite2D"]
-offset_left = -115.217
-offset_top = -741.544
-offset_right = 64.7829
-offset_bottom = -688.544
-theme_override_font_sizes/font_size = 36
+[node name="Label" type="Label" parent="Sprite2D"]
+offset_left = -42.0
+offset_top = -74.0
+offset_right = 77.0
+offset_bottom = -48.0
 horizontal_alignment = 1
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "idle"
-libraries = {
-"": SubResource("AnimationLibrary_4j674")
-}
-
-[node name="AttackAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_4j674")
-}
-
-[node name="StatusAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_4j674")
 }

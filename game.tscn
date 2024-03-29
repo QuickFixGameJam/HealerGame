@@ -74,42 +74,60 @@ party_member = "Spellbook"
 [node name="HealthBar" parent="Party/MarginContainer/HBoxContainer/SpellBook" index="1"]
 visible = false
 
-[node name="Character" parent="Party/MarginContainer/HBoxContainer/SpellBook" index="3"]
-visible = false
+[node name="Sprite2D" parent="Party/MarginContainer/HBoxContainer/SpellBook" index="3"]
+position = Vector2(64, -128)
+texture = null
 
-[node name="Sprite2D" parent="Party/MarginContainer/HBoxContainer/SpellBook/Character" index="0"]
-visible = false
-
-[node name="Label" parent="Party/MarginContainer/HBoxContainer/SpellBook/Character/Sprite2D" index="0"]
+[node name="Label" parent="Party/MarginContainer/HBoxContainer/SpellBook/Sprite2D" index="0"]
 visible = false
 
 [node name="PartyMember1" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
 layout_mode = 2
-party_member = "Balthazar"
+party_member = "PartyMember1"
 
-[node name="Character" parent="Party/MarginContainer/HBoxContainer/PartyMember1" index="3"]
-position = Vector2(-224, -128)
+[node name="Sprite2D" parent="Party/MarginContainer/HBoxContainer/PartyMember1" index="3"]
+position = Vector2(-192, -128)
+
+[node name="Label" parent="Party/MarginContainer/HBoxContainer/PartyMember1/Sprite2D" index="0"]
+offset_top = -154.0
+offset_bottom = -128.0
+metadata/_edit_use_anchors_ = true
 
 [node name="PartyMember2" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
 layout_mode = 2
 party_member = "PartyMember2"
 
-[node name="Character" parent="Party/MarginContainer/HBoxContainer/PartyMember2" index="3"]
-position = Vector2(-288, -128)
+[node name="Sprite2D" parent="Party/MarginContainer/HBoxContainer/PartyMember2" index="3"]
+position = Vector2(-246, -130)
+
+[node name="Label" parent="Party/MarginContainer/HBoxContainer/PartyMember2/Sprite2D" index="0"]
+offset_top = -154.0
+offset_bottom = -128.0
+metadata/_edit_use_anchors_ = true
 
 [node name="PartyMember3" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
 layout_mode = 2
 party_member = "PartyMember3"
 
-[node name="Character" parent="Party/MarginContainer/HBoxContainer/PartyMember3" index="3"]
-position = Vector2(-344, -128)
+[node name="Sprite2D" parent="Party/MarginContainer/HBoxContainer/PartyMember3" index="3"]
+position = Vector2(-301, -128)
+
+[node name="Label" parent="Party/MarginContainer/HBoxContainer/PartyMember3/Sprite2D" index="0"]
+offset_top = -154.0
+offset_bottom = -128.0
+metadata/_edit_use_anchors_ = true
 
 [node name="PartyMember4" parent="Party/MarginContainer/HBoxContainer" instance=ExtResource("3_ugncn")]
 layout_mode = 2
 party_member = "PartyMember4"
 
-[node name="Character" parent="Party/MarginContainer/HBoxContainer/PartyMember4" index="3"]
-position = Vector2(-392, -128)
+[node name="Sprite2D" parent="Party/MarginContainer/HBoxContainer/PartyMember4" index="3"]
+position = Vector2(-356, -130)
+
+[node name="Label" parent="Party/MarginContainer/HBoxContainer/PartyMember4/Sprite2D" index="0"]
+offset_top = -154.0
+offset_bottom = -128.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Points" type="Node2D" parent="."]
 visible = false
