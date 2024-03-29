@@ -136,9 +136,9 @@ value = 200.0
 show_percentage = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "return"
 libraries = {
 "": SubResource("AnimationLibrary_1vpvl")
 }
-autoplay = "return"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
