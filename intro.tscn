@@ -259,6 +259,7 @@ expand_mode = 1
 
 [node name="Party" type="Node2D" parent="test"]
 position = Vector2(-224, 474)
+scale = Vector2(1.01806, 0.969445)
 
 [node name="Character" type="Node2D" parent="test/Party"]
 position = Vector2(-49, 0)

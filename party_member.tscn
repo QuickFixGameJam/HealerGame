@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://thvnxqkocf4w"]
+[gd_scene load_steps=21 format=3 uid="uid://thvnxqkocf4w"]
 
 [ext_resource type="Script" path="res://party_member.gd" id="1_0j8a1"]
 [ext_resource type="Texture2D" uid="uid://cysr8ktgh28k0" path="res://images/balthazar.png" id="2_xsc85"]
@@ -6,7 +6,40 @@
 [ext_resource type="Texture2D" uid="uid://bbwlur10wxuqc" path="res://images/VFX/Posion.png" id="4_v5m3i"]
 [ext_resource type="Texture2D" uid="uid://c5meat8la6pil" path="res://images/VFX/Snow.png" id="5_cttrg"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxm4n"]
+bg_color = Color(0.262745, 0.262745, 0.262745, 0.478431)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c07ct"]
+bg_color = Color(0.407843, 0.407843, 0.407843, 0.478431)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ra8nl"]
+bg_color = Color(0.12549, 0.12549, 0.12549, 0.54902)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqpei"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gesn5"]
+bg_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 13
 corner_radius_top_right = 13
 corner_radius_bottom_right = 13
@@ -140,13 +173,18 @@ _data = {
 
 [node name="PartyMember" type="VBoxContainer"]
 custom_minimum_size = Vector2(180, 180)
+offset_right = 180.0
+offset_bottom = 180.0
 script = ExtResource("1_0j8a1")
 party_member = "none"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Party Member"
+theme_override_styles/normal = SubResource("StyleBoxFlat_yxm4n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c07ct")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ra8nl")
+theme_override_styles/focus = SubResource("StyleBoxFlat_jqpei")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 custom_minimum_size = Vector2(20, 25)
@@ -256,6 +294,9 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_4j674")
 }
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

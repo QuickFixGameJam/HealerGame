@@ -94,19 +94,28 @@ func reverse_arrays():
 	defrost_array_reverse.reverse()
 
 func attack_party_member(attack_name):
-	if attack_name == "basic":
+	if boss.dead == false:
 		boss_target = party_array.pick_random()
-		while(boss_target.status_effect == "dead"):
-			boss_target = party_array.pick_random()
-		boss_target.attacked(attack_name)
-	else:
-		if check_party_status():
-			boss_target = party_array.pick_random()
-			while(boss_target.status_effect != " " and boss_target.status_effect != "dead"):
+		if boss_target.dead or boss_target.status_effect == "dead":
+			while(boss_target.status_effect == "dead"):
+				check_party_status()
 				boss_target = party_array.pick_random()
-				if check_party_status() == false:
-					break
-			boss_target.attacked(attack_name)
+				print(boss_target)
+		else:
+			if attack_name == "basic":
+				boss_target = party_array.pick_random()
+				while(boss_target.status_effect == "dead"):
+					boss_target = party_array.pick_random()
+				boss_target.attacked(attack_name)
+			else:
+				if check_party_status():
+					boss_target = party_array.pick_random()
+					while(boss_target.status_effect != " " and boss_target.status_effect != "dead"):
+						boss_target = party_array.pick_random()
+						if check_party_status() == false:
+							break
+					boss_target.attacked(attack_name)
+		if party_array.size() < 3: boss.berserk()
 
 func check_party_status():
 	if party_member_1.status_effect == " ":
@@ -123,3 +132,7 @@ func check_party_status():
 
 func attack_boss():
 	boss.get_hit()
+
+func party_member_dead(name):
+	check_party_status()
+	party_array.erase(name)
