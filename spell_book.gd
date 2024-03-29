@@ -23,26 +23,28 @@ func _process(delta):
 func update_pages(current_page):
 	if current_page == 1:
 		spell_name_1.text = "Heal"
-		#spell_image_1 = cure image
+		spell_image_1.texture = preload("res://images/spellbook/heal.png")
 		spell_description_1.text = "Slightly heals target. Use it when someone is at low health."
 		spell_name_2.text = "Rain"
-		#spell_image_2 = rain image
+		spell_image_2.texture = preload("res://images/spellbook/rain.png")
 		spell_description_2.text = "Calls down light showers upon target. Use when someone is on fire."
 	if current_page == 2:
 		spell_name_1.text = "Cure"
-		#spell_image_1 = cure image
+		spell_image_1.texture = preload("res://images/spellbook/cure.png")
 		spell_description_1.text = "Purges poison from targets body. Use it when someone is suffering from poison."
-		spell_name_2.text = "Shield"
-		#spell_image_2 = rain image
-		spell_description_2.text = "Creates a shield that negates the next incoming attack. Use when someone is being targeted."
+		spell_name_2.text = "Defrost"
+		spell_image_2.texture = preload("res://images/spellbook/defrost.png")
+		spell_description_2.text = "Warms up the target. Use it when someone is frozen solid."
 
 func _on_next_button_pressed():
-	if current_page < 2:
+	if current_page < 3:
 		current_page += 1
 		update_pages(current_page)
+		SoundPlayer.play_sound(SoundPlayer.PAGE)
 
 
 func _on_back_button_pressed():
 	if current_page > 1:
 		current_page -= 1
 		update_pages(current_page)
+		SoundPlayer.play_sound(SoundPlayer.PAGE)

@@ -15,7 +15,7 @@ var attacks = ["fire", "poison", "basic", "freeze"]
 func _ready():
 	rng.randomize()
 	
-	timer.wait_time = rng.randi_range(3, 8)
+	timer.wait_time = 10
 	timer.start()
 
 
@@ -30,16 +30,18 @@ func attack():
 	else:
 		attack_name = "basic"
 	
-	print(attack_name)
+	if attack_name == "basic":
+		animation_player.play("basic")
+	else:
+		animation_player.play("breath")
 	
-	animation_player.play(attack_name)
 	await animation_player.animation_finished
 	get_parent().attack_party_member(attack_name)
 	animation_player.play("return")
 	await animation_player.animation_finished
 
 func get_hit():
-	$HealthBar.value -= 1
+	$HealthBar.value -= 2
 	if $HealthBar.value <= 0:
 		# death animation
 		visible = false
